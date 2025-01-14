@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joke of the Day</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #A0E7E5, #B4F8C8);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Background emoji pattern */
+        .emoji-bg {
+            position: fixed;
+            font-size: 2rem;
+            opacity: 0.1;
+            pointer-events: none;
+            animation: float 6s infinite;
+            z-index: 0;
+        }
+
+        .emoji-bg:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .emoji-bg:nth-child(2) { top: 20%; right: 20%; animation-delay: 1s; }
+        .emoji-bg:nth-child(3) { bottom: 15%; left: 15%; animation-delay: 2s; }
+        .emoji-bg:nth-child(4) { bottom: 25%; right: 25%; animation-delay: 3s; }
+        .emoji-bg:nth-child(5) { top: 50%; left: 5%; animation-delay: 4s; }
+        .emoji-bg:nth-child(6) { bottom: 50%; right: 5%; animation-delay: 5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        /* Container styles */
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        /* Corner emojis */
+        .corner-emoji {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.2;
+            animation: wiggle 3s infinite;
+        }
+
+        .top-left {
+            top: -15px;
+            left: -15px;
+            transform: rotate(-15deg);
+        }
+
+        .top-right {
+            top: -15px;
+            right: -15px;
+            transform: rotate(15deg);
+            animation-delay: 0.5s;
+        }
+
+        .bottom-left {
+            bottom: -15px;
+            left: -15px;
+            transform: rotate(-15deg);
+            animation-delay: 1s;
+        }
+
+        .bottom-right {
+            bottom: -15px;
+            right: -15px;
+            transform: rotate(15deg);
+            animation-delay: 1.5s;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-15deg); }
+            50% { transform: rotate(15deg); }
+        }
+
+        /* Typography */
+        h1 {
+            color: #00B4D8;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::before {
+            content: "🎭";
+            position: absolute;
+            left: -40px;
+            animation: spin 3s infinite;
+        }
+
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #00B4D8, #48CAE4);
+            border-radius: 2px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #joke {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: #4A4A4A;
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            transition: transform 0.3s ease;
+        }
+
+        #joke:hover {
+            transform: scale(1.02);
+        }
+
+        /* Loading animation */
+        .loading {
+            animation: bounce 1s infinite;
+            color: #00B4D8;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Responsive design */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            #joke {
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background floating emojis -->
+    <div class="emoji-bg">😆</div>
+    <div class="emoji-bg">😂</div>
+    <div class="emoji-bg">🤣</div>
+    <div class="emoji-bg">😅</div>
+    <div class="emoji-bg">😊</div>
+    <div class="emoji-bg">🤪</div>
+
+    <div class="container">
+        <!-- Corner emojis -->
+        <span class="corner-emoji top-left">😂</span>
+        <span class="corner-emoji top-right">🤣</span>
+        <span class="corner-emoji bottom-left">😆</span>
+        <span class="corner-emoji bottom-right">😅</span>
+
+        <h1>Joke of the Day</h1>
+        <div id="joke">
+            <p class="loading">Loading today's joke...</p>
+        </div>
+    </div>
+</body>
+</html>
